@@ -11,18 +11,10 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class ComparerFactory implements ComparerFactoryInterface
 {
-    /** @var FactoryInterface */
-    private $comparerFactory;
-
-    /** @var ComparerTokenInterface */
-    private $comparerToken;
-
     public function __construct(
-        FactoryInterface $comparerFactory,
-        ComparerTokenInterface $comparerToken
+        private FactoryInterface $comparerFactory,
+        private ComparerTokenInterface $comparerToken
     ) {
-        $this->comparerFactory = $comparerFactory;
-        $this->comparerToken = $comparerToken;
     }
 
     public function createNew(): ComparerInterface

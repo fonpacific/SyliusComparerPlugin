@@ -11,12 +11,9 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 class ComparerProductFactory implements ComparerProductFactoryInterface
 {
-    /** @var FactoryInterface */
-    private $comparerProductFactory;
-
-    public function __construct(FactoryInterface $comparerProductFactory)
-    {
-        $this->comparerProductFactory = $comparerProductFactory;
+    public function __construct(
+        private FactoryInterface $comparerProductFactory
+    ) {
     }
 
     public function createNew(): ComparerProductInterface

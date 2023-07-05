@@ -19,7 +19,7 @@
             <div class="sylius-product-price">{{ money.calculatePrice(product|sylius_resolve_variant) }}</div>
         {% endif %}
     </div>
-{% include 'LocasticSyliusComparerPlugin::_addToComparer.html.twig' %}
+{% include '@LocasticSyliusComparerPlugin/_addToComparer.html.twig' %}
 </div>
 
 {{ sonata_block_render_event('sylius.shop.product.index.after_box', {'product': product}) }}

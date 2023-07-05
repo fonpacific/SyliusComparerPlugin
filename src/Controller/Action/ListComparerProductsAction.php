@@ -11,31 +11,16 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 final class ListComparerProductsAction
 {
-    /** @var EngineInterface */
-    private $templatingEngine;
-
-    /** @var EntityManagerInterface */
-    private $comparerManager;
-
-    /** @var ComparerContextInterface */
-    private $comparerContext;
-
-    /** @var string */
-    private $comparerCookieToken;
-
     public function __construct(
-        EngineInterface $templatingEngine,
-        EntityManagerInterface $comparerManager,
-        ComparerContextInterface $comparerContext,
-        string $comparerCookieToken
+        private Environment $twig,
+        private EntityManagerInterface $comparerManager,
+        private ComparerContextInterface $comparerContext,
+        private string $comparerCookieToken
     ) {
-        $this->templatingEngine = $templatingEngine;
-        $this->comparerManager = $comparerManager;
-        $this->comparerContext = $comparerContext;
-        $this->comparerCookieToken = $comparerCookieToken;
     }
 
     public function __invoke(Request $request): Response
@@ -47,7 +32,7 @@ final class ListComparerProductsAction
         $products = $comparer->getProducts();
         $attributes = $comparer->getComparerAttributes($products, $request->getLocale(), $request->getDefaultLocale());
 
-        return new Response($this->templatingEngine->render(
+        return new Response($this->twig->render(
                 '@LocasticSyliusComparerPlugin/listComparer.html.twig', [
                     'products' => $comparer->getProducts(),
                     'attributes' => $attributes,

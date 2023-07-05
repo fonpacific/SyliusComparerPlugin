@@ -1,4 +1,5 @@
 imports:
+    - { resource: parameters.yml }
     - { resource: services/controllers.yml }
     - { resource: services/factories.yml }
     - { resource: services/validators.yml }
@@ -26,7 +27,7 @@ services:
     locastic_sylius_comparer_plugin.block.inject_style:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
         arguments:
-            - "LocasticSyliusComparerPlugin::_stylesheets.html.twig"
+            - "LocasticSyliusComparerPlugin:_stylesheets.html.twig"
         tags:
             -
                 name: kernel.event_listener
@@ -36,6 +37,6 @@ services:
     locastic.sylius_comparer_plugin.utils.message_redirect_helper:
         class: Locastic\SyliusComparerPlugin\Utils\MessageRedirectHelper
         arguments:
-            - "@session.flash_bag"
+            - "@request_stack"
             - "@router.default"
-            - "@sylius.theme.translation.translator"
+            - "@translator"
