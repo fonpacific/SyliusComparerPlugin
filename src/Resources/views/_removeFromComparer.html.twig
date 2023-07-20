@@ -1,8 +1,8 @@
-<div class="ui center aligned" style="align-self: center;">
-    <a href="{{ path('locastic_sylius_comparer_remove_product', {'productId': product.id}) }}"
-       class="locastic-remove-from-comparer ui icon labeled button red"
-       data-product-name="{{ product.name }}">
-        <i class="window close icon"></i>
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+
+<div class="d-grid gap-2 mb-3">
+    <a href="{{ path('locastic_sylius_comparer_remove_product', {'productId': product.id}) }}" class="locastic-remove-from-comparer btn btn-outline-danger" data-product-name="{{ product.name }}">
+        <span class="btn-icon">{{ icons.times() }}</span>
         {{ 'locastic_sylius_comparer_plugin.ui.remove_from_comparer'|trans }}
     </a>
 </div>

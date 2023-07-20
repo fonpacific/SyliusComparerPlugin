@@ -1,8 +1,10 @@
+{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+
 <div class="compare-button" style="align-self: center;">
     <a href="{{ path('locastic_sylius_comparer_add_product', {'productId': product.id}) }}"
-       class="locastic-add-to-comparer ui icon labeled button blue"
+       class="locastic-add-to-comparer btn btn-primary"
        data-product-name="{{ product.name }}">
-        <i class="clone icon"></i>
+        <span class="btn-icon">{{ icons.base('bi bi-plus-square') }}</span>
         {{ 'locastic_sylius_comparer_plugin.ui.add_to_comparer'|trans }}
     </a>
 </div>
